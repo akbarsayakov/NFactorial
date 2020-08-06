@@ -22,11 +22,12 @@ const InputRow = styled.div`
   flex-direction: row;
 `;
 
-const TextInput = styled.input``;
+const TextInput = styled.input``
 
 const AddButton = styled.button`
   margin-left: 50px;
 `;
+
 
 function App() {
   const [taskTitle, setTaskTitle] = React.useState("");
@@ -50,6 +51,12 @@ function App() {
     setTasks(tasksArray);
   };
 
+  const editTask = (updatedTitle, index) => {
+    const tasksArray = [...tasks]
+    tasksArray[index] = updatedTitle
+    setTasks(tasksArray)
+  }
+
   
 
   return (
@@ -60,7 +67,7 @@ function App() {
         <AddButton onClick={addTask}>Add new task</AddButton>
       </InputRow>
       {tasks.map((task, index) => (
-        <TodoItem title={task} index={index} onDelete={onDelete}  key={index}/>
+        <TodoItem title={task} index={index} onDelete={onDelete} editTask={editTask}  key={index}/>
       ))}
     </MainContainer>
   );
